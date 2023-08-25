@@ -1,0 +1,3 @@
+https://python.langchain.com/docs/integrations/document_loaders/microsoft_word
+
+https://python.langchain.com/docs/modules/data_connection/document_loaders/pdf

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Document Processor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+.header {
+  padding: 1px;
+  text-align: center;
+  background: #FF4500;
+  color: white;
+  font-size: 30px;
+}
+.content {padding:10px;}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  margin-left: 0%;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.rightRapper {
+  background-color: #1abc9c;
+  border: 1px solid;
+  margin-left: 0px;
+  margin-top: -485px;
+  text-align: center;
+  vertical-align: middle;
+  height: 465px;
+  width: 675px;
+  display: block;
+  float: right;
+}
+
+.leftRapper {
+  background-color: #1abc9c;
+  border: 1px solid;
+  margin-left: 0px;
+  height: 465px;
+  width: 665px;
+  display: block;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.loader {
+  visibility: hidden;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  margin-left: 300px;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+</style>
+</head>
+<body bgcolor="#FF7A48">
+        <div class="header"><h1>EXL Document Processor</h1></div>    
+        <span class="leftRapper">
+        <div class="content"><h1>UPLOAD FILE</h1></div>
+    <form id="uploadForm" enctype="multipart/form-data">
+    <input class="content" type="file" name="file" id="fileInput" multiple>
+    <button class="content" type="button" onclick="uploadFile()">Upload</button>
+    </form>
+    <div class="loader" id="loader"></div>
+    <div id="output"></div><BR>
+        <div class="content"><h1>Ask a Question here !</h1></div>
+    <form id="askquestionform">
+        <textarea style="margin-left: 10px;" id="question" name="question" rows="4" cols="50"></textarea><BR>
+        <button class="content" type="button" onclick="ask_ques()">Ask</button>
+    </form>
+        </span>
+        <BR>
+        <span class="rightRapper">
+        <div class="content"><h1>ANSWER</h1></div><BR>
+        <div id="quesoutput"></div>
+        </span>
+    <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+</html>
