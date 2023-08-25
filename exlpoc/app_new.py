@@ -3,11 +3,8 @@ import os
 from flask_cors import CORS
 import glob
 import pandas as pd
-import PyPDF2, textract
-import openpyxl
-from docx2python import docx2python
 
-from langchain.document_loaders import Docx2txtLoader, PyPDFLoader, CSVLoader, UnstructuredExcelLoader
+from langchain.document_loaders import TextLoader, Docx2txtLoader, PyPDFLoader, CSVLoader, UnstructuredExcelLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.vectorstores import FAISS
@@ -16,6 +13,8 @@ from langchain.memory import ConversationBufferMemory
 from langchain.llms import OpenAI
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
+from pathlib import Path
+from llama_index import download_loader
 
 app = Flask(__name__)
 CORS(app)
@@ -62,7 +61,10 @@ def processFiles(uploaded_files):
             loader = CSVLoader(file_path=landing+file)
             documents = loader.load()
         elif extnsn in ("xlsx", "xls"):
-            loader = UnstructuredExcelLoader(landing+file, mode="elements")
+            #PandasExcelReader = download_loader("PandasExcelReader")
+            #loader = PandasExcelReader(pandas_config={"header": 0})
+            #documents = loader.load_data(file=landing+file)
+            loader = UnstructuredExcelLoader(landing+file)
             documents = loader.load()
     print("Loading files from MyDrive")
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=10)

@@ -6,11 +6,16 @@ function hide() {
   document.getElementById('loader').style.visibility = 'hidden';
 }
 
+function clear() {
+        document.getElementById("output").innerHTML = "";
+    }
+
 function uploadFile() {
-    show()
-        const fileInput = document.getElementById("fileInput");
-        const file = fileInput.files;
-        /*alert(file)*/
+    clear()
+	show()
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files;
+    /*alert(file)*/
     if (!file) {
         alert("Please select a file!");
         return;
